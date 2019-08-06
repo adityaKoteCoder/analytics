@@ -10,51 +10,81 @@ def c_view_all_internships():
     db.view_all_internships()
     
 def c_search_internship_by_name():
-    name = input("Enter the name to search:")
+    name = input("enter the name")
     db.search_internship_by_name(name)
+
 def c_change_status_internship():
-    pass
+    id = input("enter the id")
+    status = input("enter the status")
+    db.change_status_internship(id,status)
+
 def c_delete_internship():
-    pass
+   i_id = int(input("enter the ID:"))
+   db.delete_internship(i_id)
+
+
 
 # Student oprations
-def c_add_student():
-    try:
-        db.dbContext() as connection:
-        coursor.execute("insert into student(regno,name,sem,placed)values(?,?,?,?)",(regno,name,sem,placed)))
-        conn.commit()
-    except Exception as e:
-        print(f"{str(e)}")
-    finally:
-        conn.close()
+def c_add_student(regno,name,sem,placed):
+    usn = input("enter the usn")
+    name = input("enter the name")
+    sem = input("enter the sem")
+    placed = input("enter the place")
+    db.add_student(usn,name,sem,placed)
 
 def c_view_all_student():
-    pass
-def c_search_student_by_name():
-    pass
+    db.view_all_students()
+
+def c_search_student_by_name(name):
+    name = input("enter the name : ")
+    db.search_student(name) 
+
 def c_update_student():
-    pass
+    usn = int("enter the usn")
+    print("1.Name\n2.Sem\n3.Placed\n")
+    ch = int(input("enter your choice"))
+    if ch == 1:
+        name = input("enter the name")
+        db.update_student(usn,ch,name)
+    if ch == 2:
+        sem = input("enter the usn")
+        db.update_student(usn,ch,sem) 
+    if ch ==3:
+        placed = input("enter the placed")
+        db.update_student(usn,ch,placed)
+    else:
+        print("Enter choice from 1-3..")
+
+
 def c_delete_student():
-    pass
+    usn = int(input("ente the usn"))
+    db.delete_student(usn)
+   
 
 # Registrations and summary reports 
 def c_company_ws_count():
-    pass
+    db.company_ws_count()
+   
 def c_student_ws_count():
-    pass
+    db.student_ws_count()
+
 def c_ws_student_reports():
-    pass
+    db.ws_student_reports()
 
 def c_reg_stu_internship():
-    pass
-
+    usn = int(input("enter the student usn:"))
+    iid = int(input("enter the student ID:"))
+    db.reg_student_internship(usn,iid)
+    
 def c_update_stu_intership_status():
-    pass
+   usn = int(input("Enter the usn : "))
+   status = int(input("Enter the 1 for completed and 0 for not yet : "))
+   db.update_stu_intership_status(usn,status)
 
 
 while True:
     try:
-        print("1. Add Internship 2.Student 3.Reports 4.Exit")
+        print("~"*10,"Welcome to IT Training Management System","~"*10,"\n1.Add Internship\n2.Student\n3.Reports\n4.Exit")
         mch = int(input("Enter you choice:"))
         
         if mch == 1:
@@ -62,6 +92,7 @@ while True:
                 try:
                     print("*"*50)
                     print("Internship programms conducted at MITE by Companies")
+                    print("~"*50)
                     print("1.Add 2.View All 3.Search 4.Update 5.Delete 6.Main Menu")
                     print("*"*50)
                     ch = int(input("Enter your choice:"))
